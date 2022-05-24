@@ -1,13 +1,15 @@
-Problem statement : https://leetcode.com/problems/find-the-duplicate-number/
+# Problem statement : https://leetcode.com/problems/find-the-duplicate-number/
 Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
 There is only one repeated number in nums, return this repeated number.
 You must solve the problem without modifying the array nums and uses only constant extra space.
 
-Proof
+## Proof
 Proving that at least one duplicate must exist in nums array is an application of the pigeonhole principle. 
 
-Approach 1: Sort :  modifies individual elements and does not use constant space.
+## Approach 1: Sort :  
+modifies individual elements and does not use constant space.
 In a sorted array, duplicate numbers will be next to each other.
+
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -19,5 +21,23 @@ public:
         return nums[i];
         }
     return -1;
+    }
+};
+
+## Approach 2: Set
+does not use constant space
+As we traverse the array, we need a way to "remember" values that we've seen. If we come across a number that we've seen before, we've found the duplicate. 
+An efficient way to record the seen values is by adding each number to a set as we iterate over the numsnums array.
+
+class Solution {
+    public:
+    int findDuplicate(vector<int>& nums) {
+        unordered_set<int> seen;
+        for(auto &num : nums){
+            if(seen.count(num))
+                return num;
+            seen.insert(num);
+        }
+        return -1;
     }
 };
