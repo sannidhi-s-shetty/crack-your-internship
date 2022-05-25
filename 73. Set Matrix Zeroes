@@ -33,3 +33,38 @@ public:
 # Approach 2: O(1) Space, Efficient Solution
 Rather than using additional variables to keep track of rows and columns to be reset, we use the matrix itself as the indicators.
 
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int row_size = matrix.size();
+        int col_size = matrix[0].size();
+        
+        int firstrow=0,firstcol=0; // do we need to set first row or col zero
+        for( int i=0;i<row_size;i++)
+            for( int j=0;j<col_size;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    matrix[i][0]=0;
+                    matrix[0][j]=0;
+                    if(i==0)firstrow=1;
+                    if(j==0)firstcol=1;
+                }
+            }
+        
+        //except first row first column
+        for( int i=1;i<row_size;i++)
+            for( int j=1;j<col_size;j++)
+            {
+                if(matrix[0][j]==0 || matrix[i][0]==0)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        if(firstrow)
+            for(int i=0;i<col_size;i++)matrix[0][i]=0;
+        if(firstcol)
+            for(int i=0;i<row_size;i++)matrix[i][0]=0;
+    }
+};
+
