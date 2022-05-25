@@ -1,0 +1,28 @@
+## https://leetcode.com/problems/move-zeroes/
+
+## Approach 1 : 
+count zeroes 
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int no_zeroes = 0;//count the number of zeroes
+        int len = nums.size();
+        
+        for(int i=0;i<len;i++)
+            if(nums[i]==0)
+                no_zeroes++;
+        
+        vector<int> ans;
+        for(int i=0;i<len;i++)
+            if(nums[i]!=0)
+                ans.push_back(nums[i]);
+        
+        while(no_zeroes--)
+            ans.push_back(0);
+        for(int i=0;i<len;i++)
+            nums[i]=ans[i];
+    
+    }
+};
+
+## Approach 2 : 
