@@ -1,0 +1,31 @@
+# https://leetcode.com/problems/set-matrix-zeroes/
+
+Approach 1: Additional Memory Approach
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        set<int> row;
+        set<int> col;
+        
+        int row_size = matrix.size();
+        int col_size = matrix[0].size();
+        // cout<<row_size<<" "<<col_size;
+        for(int i = 0;i<row_size;i++)
+            for(int j = 0;j<col_size;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    row.insert(i);
+                    col.insert(j);
+                }
+            }
+        for(int i = 0;i<row_size;i++)
+            for(int j = 0;j<col_size;j++)
+            {
+                if(row.count(i) || col.count(j))
+                {
+                    matrix[i][j]=0;
+                }
+            }
+    }
+};
