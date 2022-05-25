@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/set-matrix-zeroes/
 
-Approach 1: Additional Memory Approach
+# Approach 1: Additional Memory Approach
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
@@ -29,3 +29,7 @@ public:
             }
     }
 };
+
+# Approach 2: O(1) Space, Efficient Solution
+Rather than using additional variables to keep track of rows and columns to be reset, we use the matrix itself as the indicators.
+
