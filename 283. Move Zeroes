@@ -46,3 +46,30 @@ public:
             nums[lastNonZeroFoundAt++]=0;   
     }
 };
+
+Approach #3 (Optimal) [Accepted]
+The array which has all (except last) leading zeroes: [0, 0, 0, ..., 0, 1].For the previous approach, it writes 0's n-1n−1 times, which is not necessary. We could have instead written just once. 
+1.All elements before the slow pointer (lastNonZeroFoundAt) are non-zeroes.
+2.All elements between the current and slow pointer are zeroes.
+Therefore, when we encounter a non-zero element, we need to swap elements pointed by current and slow pointer, then advance both pointers. If it's zero element, we just advance current pointer.
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+//     two pointers - fast - cur , slow -  lastNonZeroFoundAt   
+        int cur = 0,lastNonZeroFoundAt=0;
+        while(cur<nums.size())
+        {
+            if(nums[cur]!=0)
+            {
+                swap(nums[cur],nums[lastNonZeroFoundAt]);
+                cur++;lastNonZeroFoundAt++;
+            }
+            else
+            {
+                cur++;
+            }
+        }
+    }
+};
+
