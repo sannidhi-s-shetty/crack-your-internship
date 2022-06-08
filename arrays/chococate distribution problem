@@ -1,0 +1,28 @@
+//  chocolate distribution problem : https://www.geeksforgeeks.org/chocolate-distribution-problem/
+#include<stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
+int min_diff(int a[],int n,int m){
+    int mn = INT_MAX;
+    sort(a,a+n);
+    // Find the subarray of size m such that
+    // difference between last (maximum in case
+    // of sorted) and first (minimum in case of
+    // sorted) elements of subarray is minimum.
+ 
+    for(int i=0;i+m-1<n;i++){
+        mn = min(mn,a[i+m-1]-a[i]);
+    }
+    return mn;
+}
+int main()
+{
+    int arr[] = {3, 4, 1, 9, 56, 7, 9, 12 };
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int m = 5;//given
+    int min_num = min_diff(arr,n,m);
+    cout<<min_num;
+    return 0 ;
+
+
+}
