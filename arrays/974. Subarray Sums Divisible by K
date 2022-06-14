@@ -1,0 +1,9 @@
+# prefix sum 
+//two subarrays with same remainders when divided by k
+if subarray S1%k=x;
+if subarray S2%k=x;
+if their remainders are same => the subarray (S1-S2) is divisible by k;
+
+proof:S1 = nk+x;
+      S2 = mk+x;
+      S2-S1 = k(m-n); => divisible by k
