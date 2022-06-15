@@ -1,0 +1,43 @@
+https://leetcode.com/problems/find-all-duplicates-in-an-array/
+
+
+// 1.BRUTE FORCE
+Time Complexcity - O(N*N)
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+      int n = nums.size();
+      vector<int> ans;
+      for(int i = 0;i<n;i++){
+          for(int j = i+1;j<n;j++){
+          if(nums[i]==nums[j]){
+              ans.push_back(nums[i]);
+              break;
+          }    
+          }  
+      }  
+        return ans;
+    }
+};
+
+
+//2.sort then compare adjacent element
+Time Complexcity - O(N*Log N)
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+      int n = nums.size();
+      vector<int> ans;
+      sort(nums.begin(),nums.end());
+      for(int i = 0;i<n-1;i++){
+          if(nums[i]==nums[i+1]){
+              ans.push_back(nums[i]);
+          }  
+      }  
+        return ans;
+    }
+};
+
+
+
+//3.Using unordered map
