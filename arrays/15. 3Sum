@@ -1,0 +1,53 @@
+https://leetcode.com/problems/3sum/
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+     int n= nums.size();
+     sort(nums.begin(),nums.end());//sort the array
+     
+        //base case
+        if(n<3)
+            return {};
+        if(nums[0]>0)
+            return {};
+        
+     vector<vector<int>>  ans;
+        
+     for(int i=0;i<n;i++){
+         int firstNum = nums[i];//fixed first number
+         
+         if(firstNum>0)break;
+         
+          //If number is getting repeated, ignore the lower loop and continue.This is for unique triplets
+         if(i>0 && nums[i]==nums[i-1])continue;
+         
+        int low=i+1,high=n-1;
+         int sum=0;
+         while(low<high){
+         sum=firstNum+nums[low]+nums[high];
+         if(sum>0){
+             //i need negative numbers
+             high--;
+         }
+         else if (sum<0){
+             //need positive numbers
+             low++;
+         }
+         else{
+             //sum=0
+             ans.push_back({firstNum,nums[low],nums[high]});
+             int last_low_occurence = nums[low] , last_high_occurence = nums[high]; 
+             while(low < high && nums[low] == last_low_occurence){   // Update the low and high with last occurences of low and high.
+                        low++;
+                    }
+            while(low < high && nums[high] == last_high_occurence){
+                        high--;
+         }
+         }
+ 
+         }
+     }
+        return ans;
+     }  
+};
