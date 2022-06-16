@@ -41,3 +41,45 @@ public:
 
 
 //3.Using unordered map
+Time Complexcity - O(N)
+Space Complexcity - O(N)
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+      vector<int> ans;//NOT IN-PLACE
+      int n = nums.size();
+        
+      unordered_map<int,int>ump;
+      for(int num:nums){
+          ump[num]++;//ump[num]=>ump[num]=0(declaration implies initialising to zero,then incrementing)
+      }  
+    for(auto &pr:ump){
+        if(pr.second==2)
+            ans.push_back(pr.first);
+    }
+    return ans;
+    }
+};
+
+
+//most efficient solution
+elements in nums lie in the range 1<=ele<=n ,where n is number of elements in the array.
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+      vector<int> ans;//NOT IN-PLACE
+      int n = nums.size();
+    
+        for(int i=0;i<n;i++){
+            int index=abs(nums[i])-1;
+            
+            if(nums[index]<0){
+                ///\ele is a duplicate
+                ans.push_back(index+1);
+            }
+        nums[index]=-nums[index];
+        }
+     
+    return ans;
+    }
+};
