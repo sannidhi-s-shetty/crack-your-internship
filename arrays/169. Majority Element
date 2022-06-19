@@ -1,0 +1,42 @@
+https://leetcode.com/problems/majority-element/
+1)SORTING
+
+Basic idea is that we will sort the array and the element which is present more than size/2 time must appear at the mid of the vector.
+Return the middle element.
+Time complexity: O(nlogn).
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+    int n = nums.size();
+    sort(nums.begin(),nums.end());
+    return nums[n/2];
+    }
+};
+
+std::nth_element in C++
+// partial sorting
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+    int n = nums.size();
+    nth_element(nums.begin(),nums.begin()+n/2,nums.end());
+    return nums[n/2];
+    }
+};
+
+2} hash table
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+    int n = nums.size();
+    
+    unordered_map<int,int> counter;
+    for(auto num:nums){
+        counter[num]++;
+        if(counter[num]>(n/2)) return num;
+    }
+        return -1;
+    }
+};
